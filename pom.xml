@@ -1,0 +1,87 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.cbn</groupId>
+  <artifactId>cbn-ins</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>cbn-ins</name>
+  <url>http://39.108.173.248:8080/cbn-ins</url>
+  
+  <properties>
+		<!-- Build args -->
+		<!--<argline>-server -Xms64m -Xmx64m -XX:PermSize=64m -XX:MaxPermSize=64m</argline> -->
+		<java.version>1.6</java.version>
+		<file_encoding>UTF-8</file_encoding>
+		<spring.version>4.2.9.RELEASE</spring.version>
+		<mybatis.version>3.4.5</mybatis.version>
+		<mysql.version>5.1.26</mysql.version>
+		<maven.test.skip>true</maven.test.skip>
+		<skip_maven_deploy>false</skip_maven_deploy>
+		<project.build.sourceEncoding>${file_encoding}</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>${file_encoding}</project.reporting.outputEncoding>
+		<maven.compiler.source>${java.version}</maven.compiler.source>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
+  </properties>
+
+  <dependencies>
+  
+	<dependency>  
+	    <groupId>org.slf4j</groupId>  
+	    <artifactId>slf4j-log4j12</artifactId>  
+	    <version>1.7.2</version>
+	</dependency>
+	
+    
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-test</artifactId>
+		<version>${spring.version}</version>
+		<scope>test</scope>
+	</dependency>
+
+	<dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<version>4.12</version>
+	</dependency>
+  </dependencies>
+  
+  	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<!-- Deploy plugin configuration -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<skip>${skip_maven_deploy}</skip>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<encoding>${file_encoding}</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+  
+  <modules>
+  	<module>cbn-ins-dao</module>
+  	<module>cbn-ins-service</module>
+  	<module>cbn-ins-web</module>
+  	<module>cbn-ins-common</module>
+  	<module>cbn-ins-model</module>
+  </modules>
+</project>
